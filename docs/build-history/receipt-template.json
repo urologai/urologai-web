@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": null,
+  "observed_at": null,
+  "repository": null,
+  "work_id": null,
+  "builder": "codex|claude-code|human|ci",
+  "source_base_sha": null,
+  "implementation_sha": null,
+  "receipt_identity": "the Git commit containing this receipt",
+  "build": {
+    "command": null,
+    "exit_code": null,
+    "artifacts": []
+  },
+  "tests": [],
+  "render": {
+    "environment": null,
+    "service_id": null,
+    "deploy_id": null,
+    "health_url": null,
+    "http_status": null,
+    "observation_status": "not_configured",
+    "deployed_revision": null,
+    "deployed_revision_matches_candidate": null,
+    "mutation_performed": false
+  },
+  "supersedes_receipt_id": null,
+  "notes": []
+}
