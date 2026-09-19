@@ -1,6 +1,6 @@
 # Cross-agent workflow
 
-- **Policy version:** 1.0.0
+- **Policy version:** 1.1.0
 - **Applies to:** Codex, Claude Code, humans, CI, and later automation
 - **Purpose:** let multiple builders contribute without duplicating work, crossing trust boundaries, or making unrecorded deployment claims
 
@@ -42,6 +42,14 @@ Only one builder owns a work unit at a time. A second builder may review, but mu
 ## 4. Initial corpus generation
 
 The initial background corpus may be produced interactively with Codex and Claude Code using the project owner's existing product allowances rather than runtime API calls. Evidence names this source mode `interactive_agent_allowance`, not local inference or API usage. Work is divided into non-overlapping topic batches with stable IDs.
+
+### 4.1 Allowance envelope and budget safe stop
+
+Before any interactive generation session, read `docs/plan/amendments/PLAN-001-credit-budgeted-corpus-generation.md` and record a user-approved provider-specific allowance envelope. The owner—not the agent—chooses the reserve floor and the maximum batch/topic count.
+
+Take a read-only aggregate usage snapshot before and after each batch when the product exposes one. Generate, validate, commit, and receipt only one bounded stable-ID batch before deciding whether another batch fits the envelope. If the usage signal is unavailable, run at most one pilot batch and stop for owner review.
+
+Stop with `paused_budget` before starting another batch when the reserve floor or cap is reached. Never automatically buy credits, redeem a reset, enable auto-reload, switch to API billing, consume a different provider's allowance, or weaken a quality gate. Store aggregate usage facts only; never store account IDs, credential material, billing tokens, or reset-credit identifiers.
 
 Each batch must record source identifiers, retrieval dates, claim/citation mappings, generation policy and schema versions, model/provider identity when available, automated checks, artifact hashes, and the required AI-generation/review disclosure. Do not represent generated material as human-authored or generally clinician-reviewed.
 

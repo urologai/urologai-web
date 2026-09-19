@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "urologai-web-20260919T194616Z-PLAN-001-codex",
+  "observed_at": "2026-09-19T19:46:16.3580663+00:00",
+  "repository": "urologai-web",
+  "work_id": "PLAN-001",
+  "builder": "codex",
+  "source_base_sha": "c2b0d384e37540cc268642a599a65b969075d2bd",
+  "implementation_sha": "f319ac7bb22346c3fd5eeec9415f06504fbf8cf7",
+  "receipt_identity": "the Git commit containing this receipt",
+  "build": {
+    "command": "git diff --check; verify identical PLAN-001, ADR-WORK-002, and workflow SHA-256 across three repositories",
+    "exit_code": 0,
+    "artifacts": [
+      {
+        "path": "docs/plan/amendments/PLAN-001-credit-budgeted-corpus-generation.md",
+        "sha256": "0dd2b6405cf5b90c8f91e196872fce89c3ecb6c73bcdb2a3c6ee4ed032c83616",
+        "size_bytes": 6522
+      },
+      {
+        "path": "docs/decisions/ADR-WORK-002.md",
+        "sha256": "3c793b1fbeae8af9e886629f2514f8c4fe5d9a7c9823776d15c63c9e99547e55",
+        "size_bytes": 1854
+      },
+      {
+        "path": "docs/coordination/AGENT_WORKFLOW.md",
+        "sha256": "5f8b4d5adb4014792b2a898e17419dc6a73c5daccae392562966874090211f1e",
+        "size_bytes": 7771
+      }
+    ]
+  },
+  "tests": [],
+  "render": {
+    "environment": null,
+    "service_id": null,
+    "deploy_id": null,
+    "health_url": null,
+    "http_status": null,
+    "observation_status": "not_configured",
+    "deployed_revision": null,
+    "deployed_revision_matches_candidate": null,
+    "mutation_performed": false
+  },
+  "supersedes_receipt_id": null,
+  "notes": [
+    "Documentation-only plan amendment; no clinical content, API call, deployment, DNS change, or Render mutation."
+  ]
+}
