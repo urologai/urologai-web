@@ -1,6 +1,6 @@
 # Cross-agent workflow
 
-- **Policy version:** 1.1.0
+- **Policy version:** 1.2.0
 - **Applies to:** Codex, Claude Code, humans, CI, and later automation
 - **Purpose:** let multiple builders contribute without duplicating work, crossing trust boundaries, or making unrecorded deployment claims
 
@@ -11,7 +11,7 @@ This is the canonical repository policy. `AGENTS.md` and `CLAUDE.md` are compati
 Before editing, every builder must:
 
 1. Fetch `origin` and inspect the current default-branch SHA.
-2. Read `docs/BUILD_STATE.md`, the applicable block brief, and the preceding block evidence.
+2. Read `README.md`, `docs/BUILD_STATE.md`, the applicable block brief, and the preceding block evidence.
 3. Inspect open GitHub issues, assignments, branches, and pull requests for the same block, component, or files.
 4. Confirm the work is permitted by the ordered build plan and that every dependency/decision is satisfied.
 5. Stop if another active claim or overlapping pull request exists. Coordinate through the existing issue rather than beginning a parallel implementation.
@@ -28,7 +28,7 @@ Every implementation or corpus batch must have one GitHub issue or explicitly au
 - dependencies and acceptance commands;
 - whether Render observation is expected to be `healthy`, `not_configured`, or `authentication_required`.
 
-Only one builder owns a work unit at a time. A second builder may review, but must not implement the same scope. Branch names use `codex/<work-id>-<slug>` or `claude/<work-id>-<slug>`. Claims do not expire into automatic takeover. A handoff changes the issue assignment and records the prior branch/commit; it does not silently create a second implementation.
+Only one builder owns a work unit at a time. A second builder may review, but must not implement the same scope. Branch names use `human/<work-id>-<slug>`, `codex/<work-id>-<slug>`, or `claude/<work-id>-<slug>`. Humans, maintainers, Codex, and Claude Code follow the same claim and handoff rules. Claims do not expire into automatic takeover. A handoff changes the issue assignment and records the prior branch/commit; it does not silently create a second implementation.
 
 ## 3. Preserve trust boundaries
 
@@ -88,6 +88,7 @@ The next builder begins only from merged GitHub state and independently validate
 
 ## 7. Commit and history conventions
 
+- Never commit directly to `main`; use the claimed branch and a pull request, including for maintainers and collaborators.
 - Keep commits bounded to one claimed outcome.
 - Reference the work/block ID in the commit and pull-request title.
 - Never rewrite shared history or force-push a branch another builder uses.
