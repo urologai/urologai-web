@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "urologai-web-20260919T201140Z-GOV-001-codex",
+  "observed_at": "2026-09-19T20:11:40.4600529+00:00",
+  "repository": "urologai-web",
+  "work_id": "GOV-001",
+  "builder": "codex",
+  "source_base_sha": "3ec3101d3b4d93ee3771eef95169772ef91a99c7",
+  "implementation_sha": "77a9e1251be5b1792541859a7e8cab55d92c067c",
+  "receipt_identity": "the Git commit containing this receipt",
+  "build": {
+    "command": "git diff --check; validate README local links; verify identical AGENT_WORKFLOW and ADR-WORK-003 hashes across repositories; scan changed governance files for high-confidence secret patterns",
+    "exit_code": 0,
+    "artifacts": [
+      {
+        "path": "README.md",
+        "sha256": "0388b5601ac0d5670999cdf649e2de6cee6e850cbaf87ce00d585ee379a10b70",
+        "size_bytes": 10452
+      },
+      {
+        "path": "docs/coordination/AGENT_WORKFLOW.md",
+        "sha256": "34771c813292e907c7c8f3a37e9724f6b33debcd3356de14abb367e0aa1a186a",
+        "size_bytes": 8025
+      },
+      {
+        "path": "docs/decisions/ADR-WORK-003.md",
+        "sha256": "bef0861d62e5dcbc31898cae8a93fc35e7997eda7a89aca5037c378352c9b2b3",
+        "size_bytes": 2003
+      }
+    ]
+  },
+  "tests": [],
+  "render": {
+    "environment": null,
+    "service_id": null,
+    "deploy_id": null,
+    "health_url": null,
+    "http_status": null,
+    "observation_status": "not_configured",
+    "deployed_revision": null,
+    "deployed_revision_matches_candidate": null,
+    "mutation_performed": false
+  },
+  "supersedes_receipt_id": null,
+  "notes": [
+    "Documentation-only checkpoint; B02 remains not started.",
+    "Render observation: not_configured; mutation_performed=false."
+  ]
+}
