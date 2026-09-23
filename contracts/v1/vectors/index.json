@@ -1,0 +1,96 @@
+{
+  "contract_version": "1.0.0",
+  "cases": [
+    {
+      "id": "valid-identifier-set",
+      "schema": "schemas/identifier-set.schema.json",
+      "instance": "vectors/valid/identifier-set.json",
+      "valid": true
+    },
+    {
+      "id": "invalid-identifier-uppercase",
+      "schema": "schemas/identifier-set.schema.json",
+      "instance": "vectors/invalid/identifier-uppercase.json",
+      "valid": false,
+      "expected_error": "must match pattern"
+    },
+    {
+      "id": "valid-independent-state-record",
+      "schema": "schemas/state-record.schema.json",
+      "instance": "vectors/valid/state-record.json",
+      "valid": true
+    },
+    {
+      "id": "invalid-ambiguous-generic-status",
+      "schema": "schemas/state-record.schema.json",
+      "instance": "vectors/invalid/state-ambiguous-status.json",
+      "valid": false,
+      "expected_error": "additional property 'status'"
+    },
+    {
+      "id": "valid-error-envelope",
+      "schema": "schemas/error.schema.json",
+      "instance": "vectors/valid/error-invalid-request.json",
+      "valid": true
+    },
+    {
+      "id": "invalid-unknown-error-code",
+      "schema": "schemas/error.schema.json",
+      "instance": "vectors/invalid/error-unknown-code.json",
+      "valid": false,
+      "expected_error": "value is not in enum"
+    },
+    {
+      "id": "valid-public-nonactionable-claim",
+      "schema": "schemas/public-claim.schema.json",
+      "instance": "vectors/valid/public-claim-nonactionable.json",
+      "valid": true
+    },
+    {
+      "id": "valid-public-actionable-placeholder",
+      "schema": "schemas/public-claim.schema.json",
+      "instance": "vectors/valid/public-claim-actionable-placeholder.json",
+      "valid": true
+    },
+    {
+      "id": "invalid-public-actionable-text-leak",
+      "schema": "schemas/public-claim.schema.json",
+      "instance": "vectors/invalid/public-claim-actionable-text.json",
+      "valid": false,
+      "expected_error": "must not satisfy schema in not"
+    },
+    {
+      "id": "invalid-review-without-coverage",
+      "schema": "schemas/public-claim.schema.json",
+      "instance": "vectors/invalid/public-claim-review-without-coverage.json",
+      "valid": false,
+      "expected_error": "must contain at least 1 items"
+    },
+    {
+      "id": "valid-public-article",
+      "schema": "schemas/public-article.schema.json",
+      "instance": "vectors/valid/public-article.json",
+      "valid": true
+    },
+    {
+      "id": "invalid-public-private-identity",
+      "schema": "schemas/public-article.schema.json",
+      "instance": "vectors/invalid/public-article-private-identity.json",
+      "valid": false,
+      "expected_error": "additional property 'human_contributor_ids'"
+    },
+    {
+      "id": "valid-public-release",
+      "schema": "schemas/public-release.schema.json",
+      "instance": "vectors/valid/public-release.json",
+      "valid": true
+    },
+    {
+      "id": "invalid-release-missing-content-hash",
+      "schema": "schemas/public-release.schema.json",
+      "instance": "vectors/invalid/public-release-missing-content-hash.json",
+      "valid": false,
+      "expected_error": "missing required property 'content_sha'"
+    }
+  ]
+}

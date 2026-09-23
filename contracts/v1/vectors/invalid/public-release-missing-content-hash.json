@@ -1,0 +1,22 @@
+{
+  "contract_version": "1.0.0",
+  "release_id": "uro.release.20260923.0001",
+  "release_sequence": 1,
+  "parent_release_id": null,
+  "release_state": "active",
+  "status_epoch": 1,
+  "contract_bundle_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+  "web_sha": "8888888888888888888888888888888888888888",
+  "public_tree_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+  "status_snapshot_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+  "article_revisions": [
+    {
+      "article_id": "uro.article.contract-test",
+      "article_revision_id": "uro.article.contract-test.v1",
+      "path": "articles/contract-test.json",
+      "sha256": "7777777777777777777777777777777777777777777777777777777777777777"
+    }
+  ],
+  "evidence_cutoff": "2026-09-23",
+  "created_at": "2026-09-23T12:00:00Z"
+}

@@ -1,0 +1,12 @@
+{
+  "contract_version": "1.0.0",
+  "error": {
+    "code": "invalid_request",
+    "message": "The request does not match the pinned contract.",
+    "retryable": false,
+    "request_id": "req_01ARZ3NDEKTSV4RRFFQ69G5FAY",
+    "details": [
+      {"code": "invalid_value", "path": "/article_id"}
+    ]
+  }
+}

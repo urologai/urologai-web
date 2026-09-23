@@ -1,0 +1,45 @@
+{
+  "contract_version": "1.0.0",
+  "claim_id": "uro.contract-test.0002",
+  "claim_revision_id": "uro.contract-test.0002.v1",
+  "article_revision_id": "uro.article.contract-test.v1",
+  "component_id": "uro.component.contract-test.restricted",
+  "text": "This deliberately disallowed nonclinical fixture stands in for actionable text.",
+  "text_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "actionable": true,
+  "placeholder": {
+    "kind": "actionable_live_fragment",
+    "fragment_ref": "uro.contract-test.0002.v1",
+    "fail_closed": true
+  },
+  "claim_type": "dose",
+  "criticality": "high",
+  "question_id": null,
+  "support_links": [
+    {
+      "source_id": "uro.source.01ARZ3NDEKTSV4RRFFQ69G5FAX",
+      "source_version_id": "uro.source-version.01ARZ3NDEKTSV4RRFFQ69G5FAZ",
+      "study_result_id": null,
+      "support_locator": "compatibility-vector",
+      "relation": "supports",
+      "integrity_status": "current"
+    }
+  ],
+  "freshness": "current",
+  "freshness_reason_id": null,
+  "verification": {
+    "metadata": "pass",
+    "support": "pass",
+    "verifier_run_ids": ["uro.model-run.01ARZ3NDEKTSV4RRFFQ69G5FB0"]
+  },
+  "state": "active",
+  "authorship": {
+    "class": "ai_generated",
+    "contribution_record_ids": ["uro.contribution.01ARZ3NDEKTSV4RRFFQ69G5FAV"]
+  },
+  "human_review": {
+    "scope": "none",
+    "coverage_record_ids": []
+  },
+  "evidence_cutoff": "2026-09-23"
+}

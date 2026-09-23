@@ -1,0 +1,8 @@
+{
+  "contract_version": "1.0.0",
+  "error": {
+    "code": "something_went_wrong",
+    "message": "Unknown codes are incompatible.",
+    "retryable": false
+  }
+}

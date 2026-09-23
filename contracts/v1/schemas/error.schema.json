@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://urologai.org/contracts/v1/schemas/error.schema.json",
+  "title": "UrologAI v1 error envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "error"],
+  "properties": {
+    "contract_version": {"const": "1.0.0"},
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {
+          "enum": ["invalid_request", "unauthenticated", "forbidden", "not_found", "conflict", "rate_limited", "unsupported_contract_version", "not_eligible", "stale_state", "integrity_failure", "service_unavailable", "internal_error"]
+        },
+        "message": {"type": "string", "minLength": 1, "maxLength": 512},
+        "retryable": {"type": "boolean"},
+        "request_id": {"$ref": "common.schema.json#/$defs/request_id"},
+        "details": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "path"],
+            "properties": {
+              "code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+              "path": {"type": "string", "pattern": "^/(?:[A-Za-z0-9_.~-]+(?:/[A-Za-z0-9_.~-]+)*)?$"}
+            }
+          }
+        }
+      }
+    }
+  }
+}
