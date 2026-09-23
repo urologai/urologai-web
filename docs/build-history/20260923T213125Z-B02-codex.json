@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "urologai-web-20260923T213125Z-B02-codex",
+  "observed_at": "2026-09-23T21:31:25.2099674+00:00",
+  "repository": "urologai-web",
+  "work_id": "B02",
+  "builder": "codex",
+  "source_base_sha": "606d486518358fd5f8d365e5f9d772bfefe7634e",
+  "implementation_sha": "e0a3f2efae095ef6a9ebddab9885d8092e1f5ac0",
+  "receipt_identity": "the Git commit containing this receipt",
+  "build": {
+    "command": "node scripts/verify-contracts-v1.mjs; git diff --check; git check-attr eol; validate exact issue scope; high-confidence secret scan",
+    "exit_code": 0,
+    "artifacts": [
+      {
+        "path": ".gitattributes",
+        "sha256": "5f7dfc0a0744809637402122ac5913ac4912fa01f3375ec8870c82f89d794621",
+        "size_bytes": 72
+      },
+      {
+        "path": "contracts/v1/manifest.json",
+        "sha256": "58568f5aa07b3e70d0412605405854679a57ba60055ea19d4523d1600e45cfa8",
+        "size_bytes": 3942
+      },
+      {
+        "path": "contracts/v1/bundle.sha256",
+        "sha256": "0a3c6ec0109d8fcf66e1c3b5a9cc1cd4b0ad32cabac024efa22d21e1636a1bba",
+        "size_bytes": 65
+      },
+      {
+        "path": "scripts/verify-contracts-v1.mjs",
+        "sha256": "49ae42f84c79594874ed7adac6f9657e91f4ca9c26d1789d2b6fcaa141f221d0",
+        "size_bytes": 15384
+      }
+    ]
+  },
+  "tests": [],
+  "render": {
+    "environment": null,
+    "service_id": null,
+    "deploy_id": null,
+    "health_url": null,
+    "http_status": null,
+    "observation_status": "not_configured",
+    "deployed_revision": null,
+    "deployed_revision_matches_candidate": null,
+    "mutation_performed": false
+  },
+  "supersedes_receipt_id": null,
+  "notes": [
+    "Contract-only checkpoint; no application, clinical content, donor adaptation, dependency installation, workflow, or deployment.",
+    "Bundle SHA-256: 6871f8df8cd125ca5e5162a40e226df22808bb7ce6f542df84fe7fb960960e70.",
+    "The implementation Git SHA pins the complete tree; listed artifacts pin the bundle manifest, digest, verifier, and LF rule.",
+    "Render observation: not_configured; mutation_performed=false."
+  ]
+}

@@ -1,6 +1,6 @@
 # B02 — Freeze contracts/v1
 
-- **Status:** implementation complete; pending receipt, review, and merge
+- **Status:** implementation and receipt complete; acceptance requires reviewed merge and root verification
 - **Claim:** [urologai/urologai-web#5](https://github.com/urologai/urologai-web/issues/5)
 - **Assigned builder:** `codex`
 - **Base repository:** `urologai/urologai-web`
