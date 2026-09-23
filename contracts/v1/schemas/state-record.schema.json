@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://urologai.org/contracts/v1/schemas/state-record.schema.json",
+  "title": "UrologAI v1 independent state dimensions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["topic_coverage_state", "article_publication_state", "claim_state", "release_state", "challenge_route", "challenge_state", "challenge_disposition", "authorship_class", "human_review_scope", "freshness", "metadata_verification", "support_verification", "source_integrity"],
+  "properties": {
+    "topic_coverage_state": {"$ref": "common.schema.json#/$defs/topic_coverage_state"},
+    "article_publication_state": {"$ref": "common.schema.json#/$defs/article_publication_state"},
+    "claim_state": {"$ref": "common.schema.json#/$defs/claim_state"},
+    "release_state": {"$ref": "common.schema.json#/$defs/release_state"},
+    "challenge_route": {"$ref": "common.schema.json#/$defs/challenge_route"},
+    "challenge_state": {"$ref": "common.schema.json#/$defs/challenge_state"},
+    "challenge_disposition": {"oneOf": [{"$ref": "common.schema.json#/$defs/challenge_disposition"}, {"type": "null"}]},
+    "authorship_class": {"$ref": "common.schema.json#/$defs/authorship_class"},
+    "human_review_scope": {"$ref": "common.schema.json#/$defs/human_review_scope"},
+    "freshness": {"$ref": "common.schema.json#/$defs/freshness"},
+    "metadata_verification": {"$ref": "common.schema.json#/$defs/metadata_verification"},
+    "support_verification": {"$ref": "common.schema.json#/$defs/support_verification"},
+    "source_integrity": {"$ref": "common.schema.json#/$defs/source_integrity"}
+  }
+}

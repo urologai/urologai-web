@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://urologai.org/contracts/v1/schemas/common.schema.json",
+  "title": "UrologAI v1 common definitions",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "git_object_id": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "topic_id": {
+      "type": "string",
+      "pattern": "^uro\\.topic\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "article_id": {
+      "type": "string",
+      "pattern": "^uro\\.article\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "article_revision_id": {
+      "type": "string",
+      "pattern": "^uro\\.article\\.[a-z0-9]+(?:-[a-z0-9]+)*\\.v[1-9][0-9]*$"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^uro\\.[a-z0-9]+(?:-[a-z0-9]+)*\\.[0-9]{4,}$"
+    },
+    "claim_revision_id": {
+      "type": "string",
+      "pattern": "^uro\\.[a-z0-9]+(?:-[a-z0-9]+)*\\.[0-9]{4,}\\.v[1-9][0-9]*$"
+    },
+    "component_id": {
+      "type": "string",
+      "pattern": "^uro\\.component\\.[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)*$"
+    },
+    "contribution_id": {
+      "type": "string",
+      "pattern": "^uro\\.contribution\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "review_coverage_id": {
+      "type": "string",
+      "pattern": "^uro\\.review-coverage\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^uro\\.source\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "source_version_id": {
+      "type": "string",
+      "pattern": "^uro\\.source-version\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "study_family_id": {
+      "type": "string",
+      "pattern": "^uro\\.study-family\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "study_result_id": {
+      "type": "string",
+      "pattern": "^uro\\.study-result\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "appraisal_id": {
+      "type": "string",
+      "pattern": "^uro\\.appraisal\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "evidence_profile_id": {
+      "type": "string",
+      "pattern": "^uro\\.evidence-profile\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "question_id": {
+      "type": "string",
+      "pattern": "^uro\\.question\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "search_record_id": {
+      "type": "string",
+      "pattern": "^uro\\.search-record\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "guideline_position_id": {
+      "type": "string",
+      "pattern": "^uro\\.guideline-position\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "generation_run_id": {
+      "type": "string",
+      "pattern": "^uro\\.generation-run\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "gate_result_id": {
+      "type": "string",
+      "pattern": "^uro\\.gate-result\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "dependency_edge_id": {
+      "type": "string",
+      "pattern": "^uro\\.dependency-edge\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "challenge_id": {
+      "type": "string",
+      "pattern": "^uro\\.challenge\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "disposition_id": {
+      "type": "string",
+      "pattern": "^uro\\.disposition\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "review_record_id": {
+      "type": "string",
+      "pattern": "^uro\\.review-record\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "dose_context_id": {
+      "type": "string",
+      "pattern": "^uro\\.dose-context\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "model_run_id": {
+      "type": "string",
+      "pattern": "^uro\\.model-run\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "license_record_id": {
+      "type": "string",
+      "pattern": "^uro\\.license\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "status_event_id": {
+      "type": "string",
+      "pattern": "^uro\\.status-event\\.[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "release_id": {
+      "type": "string",
+      "pattern": "^uro\\.release\\.[0-9]{8}\\.[0-9]{4}$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^req_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "topic_coverage_state": {
+      "enum": ["not_started", "generating", "partially_published", "substantially_published", "stale"]
+    },
+    "article_publication_state": {
+      "enum": ["private_draft", "gates_failed", "published", "under_challenge", "safety_hold", "contested", "withdrawn", "superseded"]
+    },
+    "claim_state": {
+      "enum": ["active", "under_challenge", "safety_hold", "contested", "superseded", "withdrawn"]
+    },
+    "release_state": {
+      "enum": ["candidate", "gated", "attested", "pr_open", "merged", "building", "deployed", "activation_pending", "active", "superseded", "gate_failed", "publish_failed", "build_failed", "deploy_failed", "activation_failed"]
+    },
+    "challenge_route": {
+      "enum": ["administrative_invalid", "mechanical_nonclinical", "substantive_clinical", "urgent_safety", "editorial_legal_security"]
+    },
+    "challenge_state": {
+      "enum": ["received", "ai_reviewing", "ai_closed", "remediation", "resolution_check", "awaiting_sme", "awaiting_owner", "decided", "resolved", "appealed"]
+    },
+    "challenge_disposition": {
+      "enum": ["affirm", "clarify", "correct", "controversy", "suspend_withdraw", "request_second_sme"]
+    },
+    "authorship_class": {
+      "enum": ["ai_generated", "mixed", "human_authored"]
+    },
+    "human_review_scope": {
+      "enum": ["none", "challenged_claims", "full_revision"]
+    },
+    "freshness": {
+      "enum": ["current", "update_pending", "stale"]
+    },
+    "metadata_verification": {
+      "enum": ["pass", "fail"]
+    },
+    "support_verification": {
+      "enum": ["pass", "fail", "disputed"]
+    },
+    "support_relation": {
+      "enum": ["supports", "qualifies", "conflicts"]
+    },
+    "source_integrity": {
+      "enum": ["current", "corrected", "expression_of_concern", "retracted"]
+    },
+    "claim_type": {
+      "enum": ["background", "effect", "harm", "diagnostic", "prognostic", "guideline_position", "dose", "contraindication"]
+    },
+    "criticality": {
+      "enum": ["high", "moderate", "low"]
+    },
+    "contribution_type": {
+      "enum": ["generated", "human_drafted", "human_reworded", "human_structured", "translated"]
+    }
+  }
+}

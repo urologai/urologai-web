@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://urologai.org/contracts/v1/schemas/public-article.schema.json",
+  "title": "UrologAI v1 sanitized public article",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "article_id", "article_revision_id", "topic_id", "slug", "title", "publication_state", "coverage_state", "authorship_class", "human_review_scope", "machine_check_status", "claim_counts", "contributions", "review_annotations", "claims", "evidence_cutoff", "generated_at"],
+  "properties": {
+    "contract_version": {"const": "1.0.0"},
+    "article_id": {"$ref": "common.schema.json#/$defs/article_id"},
+    "article_revision_id": {"$ref": "common.schema.json#/$defs/article_revision_id"},
+    "topic_id": {"$ref": "common.schema.json#/$defs/topic_id"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 240},
+    "publication_state": {"enum": ["published", "under_challenge", "safety_hold", "contested", "withdrawn", "superseded"]},
+    "coverage_state": {"$ref": "common.schema.json#/$defs/topic_coverage_state"},
+    "authorship_class": {"$ref": "common.schema.json#/$defs/authorship_class"},
+    "human_review_scope": {"$ref": "common.schema.json#/$defs/human_review_scope"},
+    "machine_check_status": {"enum": ["automated_checks_passed"]},
+    "claim_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "actionable", "under_challenge", "safety_hold", "contested", "withdrawn"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "actionable": {"type": "integer", "minimum": 0},
+        "under_challenge": {"type": "integer", "minimum": 0},
+        "safety_hold": {"type": "integer", "minimum": 0},
+        "contested": {"type": "integer", "minimum": 0},
+        "withdrawn": {"type": "integer", "minimum": 0}
+      }
+    },
+    "contributions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/public_contribution"}
+    },
+    "review_annotations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/review_annotation"}
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "public-claim.schema.json"}
+    },
+    "evidence_cutoff": {"type": "string", "format": "date"},
+    "generated_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "public_contribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contribution_id", "component_id", "authorship_class", "contribution_type", "model_run_ids", "public_attribution", "contribution_diff_hash", "license_record_id", "created_at"],
+      "properties": {
+        "contribution_id": {"$ref": "common.schema.json#/$defs/contribution_id"},
+        "component_id": {"$ref": "common.schema.json#/$defs/component_id"},
+        "authorship_class": {"$ref": "common.schema.json#/$defs/authorship_class"},
+        "contribution_type": {"$ref": "common.schema.json#/$defs/contribution_type"},
+        "model_run_ids": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/model_run_id"}},
+        "public_attribution": {"type": ["string", "null"], "maxLength": 240},
+        "contribution_diff_hash": {"$ref": "common.schema.json#/$defs/sha256"},
+        "license_record_id": {"$ref": "common.schema.json#/$defs/license_record_id"},
+        "created_at": {"type": "string", "format": "date-time"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"authorship_class": {"enum": ["ai_generated", "mixed"]}}, "required": ["authorship_class"]},
+          "then": {"properties": {"model_run_ids": {"minItems": 1}}},
+          "else": {"properties": {"model_run_ids": {"maxItems": 0}}}
+        }
+      ]
+    },
+    "review_annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coverage_record_id", "scope", "claim_ids", "component_ids", "display_attribution", "review_context_hash", "reviewed_at"],
+      "properties": {
+        "coverage_record_id": {"$ref": "common.schema.json#/$defs/review_coverage_id"},
+        "scope": {"enum": ["challenged_claims", "full_revision"]},
+        "claim_ids": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/claim_id"}},
+        "component_ids": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/component_id"}},
+        "display_attribution": {"type": "string", "minLength": 1, "maxLength": 240},
+        "review_context_hash": {"$ref": "common.schema.json#/$defs/sha256"},
+        "reviewed_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"human_review_scope": {"const": "none"}}, "required": ["human_review_scope"]},
+      "then": {"properties": {"review_annotations": {"maxItems": 0}}},
+      "else": {"properties": {"review_annotations": {"minItems": 1}}}
+    }
+  ]
+}

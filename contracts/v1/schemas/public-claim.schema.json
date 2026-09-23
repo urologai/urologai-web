@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://urologai.org/contracts/v1/schemas/public-claim.schema.json",
+  "title": "UrologAI v1 sanitized public claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "claim_id", "claim_revision_id", "article_revision_id", "component_id", "text_sha256", "actionable", "claim_type", "criticality", "question_id", "support_links", "freshness", "freshness_reason_id", "verification", "state", "authorship", "human_review", "evidence_cutoff"],
+  "properties": {
+    "contract_version": {"const": "1.0.0"},
+    "claim_id": {"$ref": "common.schema.json#/$defs/claim_id"},
+    "claim_revision_id": {"$ref": "common.schema.json#/$defs/claim_revision_id"},
+    "article_revision_id": {"$ref": "common.schema.json#/$defs/article_revision_id"},
+    "component_id": {"$ref": "common.schema.json#/$defs/component_id"},
+    "text": {"type": "string", "minLength": 1, "maxLength": 20000},
+    "text_sha256": {"$ref": "common.schema.json#/$defs/sha256"},
+    "actionable": {"type": "boolean"},
+    "placeholder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "fragment_ref", "fail_closed"],
+      "properties": {
+        "kind": {"const": "actionable_live_fragment"},
+        "fragment_ref": {"$ref": "common.schema.json#/$defs/claim_revision_id"},
+        "fail_closed": {"const": true}
+      }
+    },
+    "claim_type": {"$ref": "common.schema.json#/$defs/claim_type"},
+    "criticality": {"$ref": "common.schema.json#/$defs/criticality"},
+    "question_id": {"oneOf": [{"$ref": "common.schema.json#/$defs/question_id"}, {"type": "null"}]},
+    "support_links": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "source_version_id", "study_result_id", "support_locator", "relation", "integrity_status"],
+        "properties": {
+          "source_id": {"$ref": "common.schema.json#/$defs/source_id"},
+          "source_version_id": {"$ref": "common.schema.json#/$defs/source_version_id"},
+          "study_result_id": {"oneOf": [{"$ref": "common.schema.json#/$defs/study_result_id"}, {"type": "null"}]},
+          "support_locator": {"type": "string", "minLength": 1, "maxLength": 512},
+          "relation": {"$ref": "common.schema.json#/$defs/support_relation"},
+          "integrity_status": {"$ref": "common.schema.json#/$defs/source_integrity"}
+        }
+      }
+    },
+    "freshness": {"$ref": "common.schema.json#/$defs/freshness"},
+    "freshness_reason_id": {"oneOf": [{"$ref": "common.schema.json#/$defs/status_event_id"}, {"type": "null"}]},
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metadata", "support", "verifier_run_ids"],
+      "properties": {
+        "metadata": {"$ref": "common.schema.json#/$defs/metadata_verification"},
+        "support": {"$ref": "common.schema.json#/$defs/support_verification"},
+        "verifier_run_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "common.schema.json#/$defs/model_run_id"}
+        }
+      }
+    },
+    "state": {"$ref": "common.schema.json#/$defs/claim_state"},
+    "authorship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["class", "contribution_record_ids"],
+      "properties": {
+        "class": {"$ref": "common.schema.json#/$defs/authorship_class"},
+        "contribution_record_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "common.schema.json#/$defs/contribution_id"}
+        }
+      }
+    },
+    "human_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "coverage_record_ids"],
+      "properties": {
+        "scope": {"$ref": "common.schema.json#/$defs/human_review_scope"},
+        "coverage_record_ids": {
+          "type": "array",
+          "items": {"$ref": "common.schema.json#/$defs/review_coverage_id"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"scope": {"const": "none"}}, "required": ["scope"]},
+          "then": {"properties": {"coverage_record_ids": {"maxItems": 0}}},
+          "else": {"properties": {"coverage_record_ids": {"minItems": 1}}}
+        }
+      ]
+    },
+    "evidence_cutoff": {"type": "string", "format": "date"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"actionable": {"const": true}}, "required": ["actionable"]},
+      "then": {"required": ["placeholder"], "not": {"required": ["text"]}},
+      "else": {"required": ["text"], "not": {"required": ["placeholder"]}}
+    },
+    {
+      "if": {"properties": {"freshness": {"const": "current"}}, "required": ["freshness"]},
+      "then": {"properties": {"freshness_reason_id": {"type": "null"}}},
+      "else": {"properties": {"freshness_reason_id": {"$ref": "common.schema.json#/$defs/status_event_id"}}}
+    }
+  ]
+}

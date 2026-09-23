@@ -1,0 +1,15 @@
+{
+  "topic_coverage_state": "partially_published",
+  "article_publication_state": "under_challenge",
+  "claim_state": "contested",
+  "release_state": "active",
+  "challenge_route": "substantive_clinical",
+  "challenge_state": "awaiting_sme",
+  "challenge_disposition": null,
+  "authorship_class": "mixed",
+  "human_review_scope": "challenged_claims",
+  "freshness": "update_pending",
+  "metadata_verification": "pass",
+  "support_verification": "disputed",
+  "source_integrity": "expression_of_concern"
+}

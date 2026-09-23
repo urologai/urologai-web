@@ -18,10 +18,10 @@ Public application, versioned public contracts, methods, disclosures, and the la
 - **ADR-WORK-001 — agent-assisted seed boundary:** Codex and Claude Code may produce private, schema-valid initial seed batches; the later API pipeline owns continuing updates.
 - **PLAN-001 and ADR-WORK-002 — allowance control:** the owner chooses the provider, reserve floor, and maximum work units; generation proceeds one stable-ID batch at a time and stops as `paused_budget` before exceeding the envelope.
 - **GOV-001 — collaborator runbook:** this README and the canonical workflow define how the project owner, Dr. Neff, Codex, and Claude Code work independently without overlapping changes.
+- **B02 — versioned contracts:** `contracts/v1` freezes canonical identifiers, typed errors, independent state/authorship/review/status vocabularies, sanitized public-content JSON Schemas, compatibility vectors, and an immutable bundle digest. It adds no application or clinical content.
 
 ### Not started
 
-- **B02 has not started.** No `contracts/v1` bundle exists yet.
 - No clinical or educational corpus has been generated, reviewed, exported, or published.
 - No application framework, dependency tree, migration, database, worker, API route, or production workflow has been added.
 - No new Render service, deployment, environment variable, credential, GitHub Pages release, DNS change, or production domain cutover has occurred.
@@ -36,7 +36,7 @@ Public application, versioned public contracts, methods, disclosures, and the la
 | [`urologai-content`](https://github.com/urologai/urologai-content) | Public | Sanitized current release projection only | Raw seed drafts, private reviewer/user data, prompts, source text, secrets |
 | [`urologai-platform`](https://github.com/urologai/urologai-platform) | Private | Platform, staff tools, pipelines, private working revisions, later Render configuration | Public-release authority, secrets in Git, unauthorized donor copies |
 
-**This repository may contain:** Governance now; `contracts/v1` beginning in B02; later public application code and sanitized build inputs only after their named blocks.
+**This repository may contain:** Governance and the frozen `contracts/v1` bundle; later public application code and sanitized build inputs only after their named blocks.
 
 **This repository must not contain:** Clinical drafts, private data, source copies, secrets, private reviewer information, exact actionable fragments, platform code, or Render credentials.
 
@@ -143,9 +143,9 @@ Merge only after the exact GitHub state is rechecked. The next builder starts fr
 
 ## Current next work
 
-`B02` in this repository: freeze `contracts/v1` identifiers, errors, state/authorship/review/status schemas, public-content JSON Schemas, compatibility vectors, and an immutable bundle hash. B02 has not started.
+No later block is claimed. B02 freezes the consumer contract at [`contracts/v1`](contracts/v1/README.md), bundle SHA-256 `6871f8df8cd125ca5e5162a40e226df22808bb7ce6f542df84fe7fb960960e70`.
 
-Do not add UI, clinical content, deployment workflows, DNS, Pages configuration, or application dependencies as part of B02.
+`B03` is next only after B02 evidence passes and D06 is resolved. Do not begin it automatically. UI, clinical content, application implementation, deployments, DNS, Pages configuration, and application dependencies remain unstarted.
 
 ## Hard stop rules
 
@@ -167,6 +167,8 @@ When uncertain, stop safely. A smaller verified handoff is correct; an unclaimed
 - [Repository build ledger](docs/BUILD_STATE.md)
 - [Credit-budget plan amendment](docs/plan/amendments/PLAN-001-credit-budgeted-corpus-generation.md)
 - [Collaborator access decision](docs/decisions/ADR-WORK-003.md)
+- [Frozen contracts/v1 bundle](contracts/v1/README.md)
+- [B02 block brief](docs/blocks/B02/block-brief.md)
 - [Build-history format](docs/build-history/README.md)
 - [Receipt template](docs/build-history/receipt-template.json)
 
